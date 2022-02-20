@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (TDCam)
         {
             TDCam.transform.position = this.transform.position + offset;
@@ -45,9 +47,62 @@ public class Player : MonoBehaviour
                 {
                     if (OnGround())
                     {
-                        rig.AddForce(rig.transform.up * 10f * JumpHeight, ForceMode.VelocityChange);
+                        rig.AddForce(rig.transform.up * 15f * JumpHeight, ForceMode.VelocityChange);
                     }
                 }
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.W))
+                {
+                    MoveTo(-rig.transform.right);
+                }
+                else if (Input.GetKey(KeyCode.S))
+                {
+                    MoveTo(rig.transform.right);
+                }
+                if (Input.GetKey(KeyCode.D))
+                {
+                    MoveTo(rig.transform.forward);
+                }
+                else if (Input.GetKey(KeyCode.A))
+                {
+                    MoveTo(-rig.transform.forward);
+                }
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    if (OnGround())
+                    {
+                        rig.AddForce(rig.transform.up * 8f * JumpHeight, ForceMode.VelocityChange);
+                    }
+                }
+                {
+                    var syuusei = 0f;
+                    var syuusei2 = 0f;
+                    var tate = Input.GetAxis("Mouse Y") * -10f;
+                    var yoko = Input.GetAxis("Mouse X") * this.MouseKando;
+                    var eulang = this.FPCam.transform.eulerAngles;
+                    if (eulang.x < 280f & eulang.x > 270f & tate < 0f)
+                    {
+                        tate = 0f;
+                    }
+                    else if (eulang.x > 80f & eulang.x < 180f & tate > 0f)
+                    {
+                        tate = 0f;
+                    }
+                    if (eulang.z > 170f & eulang.z < 190f)
+                    {
+                        syuusei = eulang.z * -1f;
+                    }
+                    //syuusei2 = rig.transform.eulerAngles.y - eulang.y;
+                    var camdekita = eulang + new Vector3(tate, 0, syuusei);
+                    this.FPCam.transform.localEulerAngles = new Vector3(camdekita.x, -90, camdekita.z);
+                    rig.transform.eulerAngles = new Vector3(rig.transform.eulerAngles.x, rig.transform.eulerAngles.y + yoko + syuusei2, rig.transform.eulerAngles.z);
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.U))
+            {
+                this.SwitchCam(!isfp);
             }
         }
         if (this.transform.position.y < this.DeathPosition)
@@ -68,6 +123,8 @@ public class Player : MonoBehaviour
         {
             FPCam.enabled = fp;
             TDCam.enabled = !fp;
+            Cursor.lockState = fp ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !fp;
         }
         isfp = fp;
     }
@@ -112,6 +169,7 @@ public class Player : MonoBehaviour
     public Camera TDCam;
     public float Speed = 1f;
     public float JumpHeight = 1f;
+    public float MouseKando = 1f;
 
     public Rigidbody rig;
     public Collider col;

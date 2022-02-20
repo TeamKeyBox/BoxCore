@@ -327,7 +327,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 10
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -417,6 +417,7 @@ MonoBehaviour:
   TDCam: {fileID: 2793304758937292157}
   Speed: 1
   JumpHeight: 1
+  MouseKando: 1
   rig: {fileID: 2793304758710707114}
   col: {fileID: 2793304758710707119}
 --- !u!1 &3265017838512771575
