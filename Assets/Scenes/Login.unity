@@ -180,7 +180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11422090, guid: 7a2e587034d846647b593aa159d7ed8d, type: 3}
       propertyPath: AutoLoginEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11422090, guid: 7a2e587034d846647b593aa159d7ed8d, type: 3}
       propertyPath: AutoLoginEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -189,18 +189,18 @@ PrefabInstance:
     - target: {fileID: 11422090, guid: 7a2e587034d846647b593aa159d7ed8d, type: 3}
       propertyPath: AutoLoginEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 959273620}
+      objectReference: {fileID: 472322506}
     - target: {fileID: 11422090, guid: 7a2e587034d846647b593aa159d7ed8d, type: 3}
       propertyPath: AutoLoginEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11422090, guid: 7a2e587034d846647b593aa159d7ed8d, type: 3}
       propertyPath: AutoLoginEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetActive
+      value: GameJolt_IsAutoLogin
       objectReference: {fileID: 0}
     - target: {fileID: 11422090, guid: 7a2e587034d846647b593aa159d7ed8d, type: 3}
       propertyPath: AutoLoginEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UnityEngine.GameObject, UnityEngine
+      value: StaticObjs, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 11422090, guid: 7a2e587034d846647b593aa159d7ed8d, type: 3}
       propertyPath: AutoLoginEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
@@ -419,6 +419,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uisound: {fileID: 472322507}
   mestext: {fileID: 959273622}
+  yesbtn: {fileID: 1478939357}
+  nobtn: {fileID: 1259296022}
   OnStarted:
     m_PersistentCalls:
       m_Calls:

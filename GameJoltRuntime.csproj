@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,42 +53,45 @@
     <UnityVersion>2021.1.20f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\SignInWindow.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Constants.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Objects\Notification.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Core\Response.cs" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Friends.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Behaviours\NotificationCentre.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\ScoreItem.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Sessions.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Objects\Score.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Misc.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\TableButton.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Objects\Table.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Objects\User.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Internal\UnityVersionAbstraction.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Core\MonoSingleton.cs" />
     <Compile Include="Assets\Plugins\GameJolt\Scripts\API\DataStore.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Users.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Settings.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Objects\Base.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Core\Request.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\TrophyItem.cs" />
     <Compile Include="Assets\Plugins\GameJolt\Scripts\API\LogHelper.cs" />
     <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\BaseWindow.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Internal\UnityVersionAbstraction.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Scores.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\GameJoltAPI.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Behaviours\DismissibleWindow.cs" />
     <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\LeaderboardsWindow.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Trophies.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\AutoLoginEvent.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\External\SimpleJSON.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Behaviours\KeyboardNavigableForm.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Core\MonoSingleton.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\External\XTEA.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\GameJoltUI.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\TrophiesWindow.cs" />
-    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Objects\Trophy.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Misc.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Core\Response.cs" />
     <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\NotificationItem.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Sessions.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Objects\Table.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Users.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Scores.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\AutoLoginEvent.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Constants.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\ScoreItem.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\TableButton.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Core\Request.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Objects\User.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Behaviours\KeyboardNavigableForm.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\External\XTEA.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Objects\Base.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Behaviours\DismissibleWindow.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Trophies.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Objects\Notification.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Objects\Score.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Settings.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\External\SimpleJSON.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\GameJoltAPI.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\TrophyItem.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\TrophiesWindow.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\GameJoltUI.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Controllers\SignInWindow.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\API\Objects\Trophy.cs" />
+    <Compile Include="Assets\Plugins\GameJolt\Scripts\UI\Behaviours\NotificationCentre.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\GameJolt\Scripts\GameJoltRuntime.asmdef" />

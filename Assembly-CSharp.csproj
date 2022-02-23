@@ -53,9 +53,16 @@
     <UnityVersion>2021.1.20f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Hint.cs" />
+    <Compile Include="Assets\Scripts\UISounds.cs" />
+    <Compile Include="Assets\Scripts\BoxButton.cs" />
     <Compile Include="Assets\Scripts\DelayAble.cs" />
+    <Compile Include="Assets\Scripts\SunLight.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\TriggerObj.cs" />
     <Compile Include="Assets\Scripts\StaticObjs.cs" />
+    <Compile Include="Assets\Scripts\SlideDoor.cs" />
+    <Compile Include="Assets\Scripts\GoalObj.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -696,13 +703,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="GameJoltEditor.csproj">
-      <Project>{22A51F45-47B5-8C25-633B-6EAB62956255}</Project>
-      <Name>GameJoltEditor</Name>
-    </ProjectReference>
     <ProjectReference Include="GameJoltDemos.csproj">
       <Project>{C8D2760D-3397-345E-1DC3-B01A7EC63505}</Project>
       <Name>GameJoltDemos</Name>
+    </ProjectReference>
+    <ProjectReference Include="GameJoltEditor.csproj">
+      <Project>{22A51F45-47B5-8C25-633B-6EAB62956255}</Project>
+      <Name>GameJoltEditor</Name>
     </ProjectReference>
     <ProjectReference Include="GameJoltRuntime.csproj">
       <Project>{0247AA38-47C3-F2BC-2F02-959635039320}</Project>

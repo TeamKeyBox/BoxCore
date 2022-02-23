@@ -9,6 +9,7 @@ public class DelayAble : MonoBehaviour
     void Start()
     {
         //if (anim) anim = this.GetComponent<Animator>();
+        
     }
 
     // Update is called once per frame
@@ -16,22 +17,34 @@ public class DelayAble : MonoBehaviour
     {
         if (anim)
         {
-
-            if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= time)
+            Debug.Log(anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            if (stateninatta)
             {
-                onDelayed.Invoke();
-                Destroy(this);
-            }
-            else
-            {
-                if (maxtime <= anim.GetCurrentAnimatorStateInfo(0).normalizedTime)
+                if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= time)
                 {
-                    maxtime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                    Debug.Log("Test");
+                    onDelayed.Invoke();
+                    Destroy(this);
                 }
                 else
                 {
-                    onDelayed.Invoke();
-                    Destroy(this);
+                    if (anim.GetCurrentAnimatorStateInfo(0).IsName(TargetState))
+                    {
+                        //maxtime = anim.GetCurrentAnimatorStateInfo(0).normalizedTime;
+                    }
+                    else
+                    {
+                        Debug.Log("Test2");
+                        onDelayed.Invoke();
+                        Destroy(this);
+                    }
+                }
+            }
+            else
+            {
+                if (anim.GetCurrentAnimatorStateInfo(0).IsName(TargetState))
+                {
+                    stateninatta = true;
                 }
             }
         }
@@ -46,8 +59,9 @@ public class DelayAble : MonoBehaviour
         }
     }
 
+    private bool stateninatta;
+    public string TargetState;
     private float maxtime;
-
     public float time;
     public Animator anim;
     public UnityEvent onDelayed;

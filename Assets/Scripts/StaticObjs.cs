@@ -36,26 +36,56 @@ public class StaticObjs : MonoBehaviour
 
     public void ShowLogin()
     {
-        if (GameJoltAPI.Instance.HasSignedInUser)
+        var isfirst = isfirstlogin;
+        isfirstlogin = false;
+        if (GameJoltAPI.Instance.HasSignedInUser || gamejolt_AutoLogin)
         {
-            ShowConfirm("現在\"" + GameJoltAPI.Instance.CurrentUser.Name + "\"でログインしています。\nログアウトしますか?", "はい", "いいえ");
+            ShowConfirm("現在\"" + GameJoltAPI.Instance.CurrentUser.Name + "\"でログインしています。\nログアウトしますか?", "はい", "いいえ", (bool yes) => {
+                if (yes && GameJoltAPI.Instance.CurrentUser != null)
+                {
+                    GameJoltAPI.Instance.CurrentUser.SignOut();
+                }
+
+                PlaySound(sound_ui_submit);
+                if (isfirst) LoadScene("Title"); else LoadScene("Settings");
+            });
         }
         else
         {
-            GameJoltUI.Instance.ShowSignIn(
-                (bool signInSuccess) => {
-                    Debug.Log(string.Format("Sign-in {0}", signInSuccess ? "successful" : "failed or user's dismissed the window"));
-                },
-                (bool userFetchedSuccess) => {
-                    Debug.Log(string.Format("User details fetched {0}", userFetchedSuccess ? "successfully" : "failed"));
-                    PlaySound(sound_ui_submit);
-                    LoadScene("Title");
-                }
-            );
+            if (!Application.isEditor)
+            {
+                GameJoltUI.Instance.ShowSignIn(
+                    (bool signInSuccess) => {
+                        Debug.Log(string.Format("Sign-in {0}", signInSuccess ? "successful" : "failed or user's dismissed the window"));
+                    },
+                    (bool userFetchedSuccess) => {
+                        Debug.Log(string.Format("User details fetched {0}", userFetchedSuccess ? "successfully" : "failed"));
+                        PlaySound(sound_ui_submit);
+                        if (isfirst) LoadScene("Title"); else LoadScene("Settings");
+                    }
+                );
+            }
         }
     }
 
-    public void ShowConfirm(string message, string yes, string no)
+    private bool isfirstlogin;
+
+    public void URL(string url)
+    {
+        Application.OpenURL(url);
+    }
+
+    private static bool gamejolt_AutoLogin;
+
+    public void GameJolt_IsAutoLogin(bool auto)
+    {
+        gamejolt_AutoLogin = auto;
+        ShowLogin();
+    }
+
+    public delegate void ConfirmDialogEvent(bool yes);
+
+    public void ShowConfirm(string message, string yes, string no, ConfirmDialogEvent on)
     {
         if (mestext)
         {
@@ -64,21 +94,51 @@ public class StaticObjs : MonoBehaviour
         }
         if (yesbtn)
         {
-            yesbtn.gameObject.SetActive(false);
+            yesbtn.gameObject.SetActive(true);
             var txt = yesbtn.GetComponentInChildren<Text>();
             if (txt)
             {
                 txt.text = yes;
             }
+            yesbtn.onClick.AddListener(() =>
+            {
+                if (on != null) on.Invoke(true);
+                yesbtn.gameObject.SetActive(false);
+                yesbtn.onClick.RemoveAllListeners();
+                if (nobtn)
+                {
+                    nobtn.gameObject.SetActive(false);
+                    nobtn.onClick.RemoveAllListeners();
+                }
+                if (mestext)
+                {
+                    mestext.gameObject.SetActive(false);
+                }
+            });
         }
         if (nobtn)
         {
-            nobtn.gameObject.SetActive(false);
+            nobtn.gameObject.SetActive(true);
             var txt = nobtn.GetComponentInChildren<Text>();
             if (txt)
             {
                 txt.text = no;
             }
+            nobtn.onClick.AddListener(() =>
+            {
+                if (on != null) on.Invoke(false);
+                nobtn.gameObject.SetActive(false);
+                nobtn.onClick.RemoveAllListeners();
+                if (yesbtn)
+                {
+                    yesbtn.gameObject.SetActive(false);
+                    yesbtn.onClick.RemoveAllListeners();
+                }
+                if (mestext)
+                {
+                    mestext.gameObject.SetActive(false);
+                }
+            });
         }
     }
 
@@ -94,6 +154,11 @@ public class StaticObjs : MonoBehaviour
     public void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
+    }
+
+    public void ExitApp()
+    {
+        Application.Quit();
     }
 
     public AudioSource uisound;

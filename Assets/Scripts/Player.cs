@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using GameJolt.API;
+using GameJolt.API.Objects;
 
 public class Player : MonoBehaviour
 {
@@ -16,10 +18,22 @@ public class Player : MonoBehaviour
         {
             TDCam.transform.SetParent(null);
             offset = TDCam.transform.position;
+            pubOffset = offset;
         }
     }
 
+    public Vector3 pubOffset;
     private Vector3 offset;
+
+    public void SetCameraOffsetZ(float ofs)
+    {
+        pubOffset.z = ofs;
+    }
+
+    public void ResetCameraOffset()
+    {
+        pubOffset = offset;
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,10 +41,12 @@ public class Player : MonoBehaviour
 
         if (TDCam)
         {
-            TDCam.transform.position = this.transform.position + offset;
+            TDCam.transform.position = this.transform.position + pubOffset;
         }
         if (rig)
         {
+            Debug.DrawRay(rig.position, rig.transform.forward, Color.red);
+            Debug.DrawRay(rig.position, rig.transform.right, Color.blue);
             if (!IsFP)
             {
                 if (Input.GetKey(KeyCode.D))
@@ -76,6 +92,18 @@ public class Player : MonoBehaviour
                         rig.AddForce(rig.transform.up * 8f * JumpHeight, ForceMode.VelocityChange);
                     }
                 }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    RaycastHit hit;
+                    if (Physics.BoxCast(FPCam.transform.position, new Vector3(0.2f, 0.2f, 0.2f), FPCam.transform.forward, out hit,  FPCam.transform.rotation, 5f))
+                    {
+                        var btn = hit.collider.GetComponent<BoxButton>();
+                        if (btn)
+                        {
+                            btn.Press();
+                        }
+                    }
+                }
                 {
                     var syuusei = 0f;
                     var syuusei2 = 0f;
@@ -114,6 +142,10 @@ public class Player : MonoBehaviour
             this.transform.localPosition = firstPos;
             this.transform.localRotation = firstAng;
 
+            if (GameJoltAPI.Instance.HasSignedInUser)
+            {
+                Trophies.TryUnlock(157702);
+            }
         }
     }
 
@@ -129,7 +161,7 @@ public class Player : MonoBehaviour
         isfp = fp;
     }
 
-    public const float MaxSpeed = 12;
+    public const float MaxSpeed = 18;
 
     public void MoveTo(Vector3 to)
     {
@@ -146,6 +178,8 @@ public class Player : MonoBehaviour
             to.z = to.z > 0 ? MaxSpeed : -MaxSpeed;
         }
         to = to * Speed;
+        to.y = 0;
+        //Debug.Log(to);
         rig.velocity = new Vector3(to.x, rig.velocity.y, to.z);
     }
 
@@ -181,7 +215,7 @@ public class Player : MonoBehaviour
         {
             var jumpbound = col.bounds.size.x / 2;
             //RaycastHit hit;
-            if (Physics.BoxCast(rig.transform.position, new Vector3(jumpbound, 0, jumpbound), -Vector3.up, new Quaternion(), 0.3f))
+            if (Physics.BoxCast(rig.transform.position, new Vector3(jumpbound, 0.04f, jumpbound), -Vector3.up, new Quaternion(), 0.4f))
             {
                 //Debug.Log(hit.collider);
                 return true;
