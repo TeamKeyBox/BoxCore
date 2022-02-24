@@ -216,7 +216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2793304757158920163}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.936, y: 1.438, z: 0}
+  m_LocalPosition: {x: -0.936, y: 1.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2398578695831897208}
@@ -412,12 +412,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6e25e2c494f86147974f9f3002cd771, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pubOffset: {x: 0, y: 0, z: 0}
   DeathPosition: -50
   FPCam: {fileID: 2793304757158920190}
   TDCam: {fileID: 2793304758937292157}
   Speed: 1
   JumpHeight: 1
-  MouseKando: 1
+  MouseKando: 10
+  Health: 0
   rig: {fileID: 2793304758710707114}
   col: {fileID: 2793304758710707119}
 --- !u!1 &3265017838512771575

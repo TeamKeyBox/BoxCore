@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
             offset = TDCam.transform.position;
             pubOffset = offset;
         }
+        this.Health = 100;
     }
 
     public Vector3 pubOffset;
@@ -35,10 +36,19 @@ public class Player : MonoBehaviour
         pubOffset = offset;
     }
 
+    public void Damage(float amount)
+    {
+        if (damagetime > 0) return;
+        this.Health -= amount;
+        damagetime = 0.2f;
+    }
+
+    private float damagetime;
+
     // Update is called once per frame
     void Update()
     {
-
+        
         if (TDCam)
         {
             TDCam.transform.position = this.transform.position + pubOffset;
@@ -47,6 +57,7 @@ public class Player : MonoBehaviour
         {
             Debug.DrawRay(rig.position, rig.transform.forward, Color.red);
             Debug.DrawRay(rig.position, rig.transform.right, Color.blue);
+            if (damagetime > 0) damagetime -= Time.deltaTime;
             if (!IsFP)
             {
                 if (Input.GetKey(KeyCode.D))
@@ -69,6 +80,11 @@ public class Player : MonoBehaviour
             }
             else
             {
+                if (this.Health < 100) this.Health += 0.1f;
+                if (this.Health > 100 && this.Health < 101)
+                {
+                    this.Health = 100;
+                }
                 if (Input.GetKey(KeyCode.W))
                 {
                     MoveTo(-rig.transform.right);
@@ -135,17 +151,22 @@ public class Player : MonoBehaviour
         }
         if (this.transform.position.y < this.DeathPosition)
         {
+
+            this.Health = 0;
+            if (GameJoltAPI.Instance && GameJoltAPI.Instance.HasSignedInUser)
+            {
+                Trophies.TryUnlock(157702);
+            }
+        }
+        if (this.Health <= 0)
+        {
             if (rig)
             {
                 rig.velocity = Vector3.zero;
             }
             this.transform.localPosition = firstPos;
             this.transform.localRotation = firstAng;
-
-            if (GameJoltAPI.Instance.HasSignedInUser)
-            {
-                Trophies.TryUnlock(157702);
-            }
+            this.Health = 100;
         }
     }
 
@@ -204,6 +225,7 @@ public class Player : MonoBehaviour
     public float Speed = 1f;
     public float JumpHeight = 1f;
     public float MouseKando = 1f;
+    public float Health;
 
     public Rigidbody rig;
     public Collider col;
