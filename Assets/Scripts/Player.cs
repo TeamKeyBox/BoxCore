@@ -16,8 +16,9 @@ public class Player : MonoBehaviour
         if (!col) col = GetComponent<Collider>();
         if (TDCam)
         {
+            offset = TDCam.transform.localPosition;
             TDCam.transform.SetParent(null);
-            offset = TDCam.transform.position;
+            
             pubOffset = offset;
         }
         this.Health = 100;
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour
         
         if (TDCam)
         {
-            TDCam.transform.position = this.transform.position + pubOffset;
+            TDCam.transform.position = transform.position + new Vector3(pubOffset.x, pubOffset.y, -pubOffset.z);
         }
         if (rig)
         {
@@ -105,7 +106,7 @@ public class Player : MonoBehaviour
                 {
                     if (OnGround())
                     {
-                        rig.AddForce(rig.transform.up * 8f * JumpHeight, ForceMode.VelocityChange);
+                        rig.AddForce(rig.transform.up * 8.5f * JumpHeight, ForceMode.VelocityChange);
                     }
                 }
                 if (Input.GetKeyDown(KeyCode.E))
@@ -148,6 +149,20 @@ public class Player : MonoBehaviour
             {
                 this.SwitchCam(!isfp);
             }
+            if (asource && stepsound && rig.velocity.magnitude >= 0.05f && !asource.isPlaying && OnGround())
+            {
+                asource.clip = stepsound;
+                asource.pitch = UnityEngine.Random.Range(0.75f, 1.25f);
+                asource.Play();
+            }
+            else if (asource && rig.velocity.magnitude < 0.05f && asource.isPlaying)
+            {
+                asource.Stop();
+            }
+            if (Math.Abs(rig.velocity.y) < 0.01f)
+            {
+                rig.velocity = new Vector3(rig.velocity.x, 0, rig.velocity.z);
+            }
         }
         if (this.transform.position.y < this.DeathPosition)
         {
@@ -182,25 +197,33 @@ public class Player : MonoBehaviour
         isfp = fp;
     }
 
-    public const float MaxSpeed = 18;
+    public const float MaxSpeed = 20;
 
     public void MoveTo(Vector3 to)
     {
         if (!rig) return;
         to.y = 0;
         to = to.normalized;
+        var nomt = to;
+        var maxx = MaxSpeed * Math.Abs(nomt.x);
+        var maxz = MaxSpeed * Math.Abs(nomt.z);
         to = rig.velocity + (to * 3f);
-        if (Mathf.Abs(to.x) > MaxSpeed)
+        /*if (Mathf.Abs(to.x) > maxx && Math.Abs(nomt.x) > 0)
         {
-            to.x = to.x > 0 ? MaxSpeed : -MaxSpeed;
+            to.x = to.x > 0 ? maxx : -maxx;
         }
-        if (Mathf.Abs(to.z) > MaxSpeed)
+        if (Mathf.Abs(to.z) > maxz && Math.Abs(nomt.z) > 0)
         {
-            to.z = to.z > 0 ? MaxSpeed : -MaxSpeed;
+            to.z = to.z > 0 ? maxz : -maxz;
+        }*/
+        if (Mathf.Abs(to.magnitude) > MaxSpeed)
+        {
+            to = to.normalized * MaxSpeed;
         }
         to = to * Speed;
         to.y = 0;
         //Debug.Log(to);
+        //rig.AddForce(new Vector3(to.x, rig.velocity.y, to.z), ForceMode.VelocityChange);
         rig.velocity = new Vector3(to.x, rig.velocity.y, to.z);
     }
 
@@ -226,6 +249,8 @@ public class Player : MonoBehaviour
     public float JumpHeight = 1f;
     public float MouseKando = 1f;
     public float Health;
+    public AudioClip stepsound;
+    public AudioSource asource;
 
     public Rigidbody rig;
     public Collider col;

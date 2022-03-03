@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9153271286141373649
+--- !u!1 &6259854082912469444
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9153271286141373650}
-  - component: {fileID: 9153271286141373662}
-  - component: {fileID: 9153271286141373661}
+  - component: {fileID: 6259854082912469447}
+  - component: {fileID: 6259854082912469451}
+  - component: {fileID: 6259854082912469448}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -18,35 +18,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9153271286141373650
+--- !u!4 &6259854082912469447
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9153271286141373649}
+  m_GameObject: {fileID: 6259854082912469444}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9153271286424822412}
+  m_Father: {fileID: 6259854083534483353}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &9153271286141373662
+--- !u!33 &6259854082912469451
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9153271286141373649}
+  m_GameObject: {fileID: 6259854082912469444}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &9153271286141373661
+--- !u!23 &6259854082912469448
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9153271286141373649}
+  m_GameObject: {fileID: 6259854082912469444}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2f2e49855f84b1b448472c4f1c744ca8, type: 2}
+  - {fileID: 2100000, guid: de10a1bea1c73d645a3652187a02e573, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,7 +82,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &9153271286424822403
+--- !u!1 &6259854083534483350
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -90,41 +90,41 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9153271286424822412}
-  - component: {fileID: 9153271286424822413}
-  - component: {fileID: 9153271286424822415}
-  - component: {fileID: 9153271286424822414}
-  - component: {fileID: 5325334790573723471}
+  - component: {fileID: 6259854083534483353}
+  - component: {fileID: 6259854083534483352}
+  - component: {fileID: 6259854083534483354}
+  - component: {fileID: 6259854083534483355}
+  - component: {fileID: 6935235995291255386}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Button_Timerd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9153271286424822412
+--- !u!4 &6259854083534483353
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9153271286424822403}
+  m_GameObject: {fileID: 6259854083534483350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 266.102, y: 12.61, z: 26.011}
+  m_LocalPosition: {x: 17.8, y: 3, z: -13.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 9153271286141373650}
+  - {fileID: 6259854082912469447}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &9153271286424822413
+--- !u!95 &6259854083534483352
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9153271286424822403}
+  m_GameObject: {fileID: 6259854083534483350}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 4dbff798a953e094d9639e29095e3275, type: 2}
@@ -136,36 +136,36 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!65 &9153271286424822415
+--- !u!65 &6259854083534483354
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9153271286424822403}
+  m_GameObject: {fileID: 6259854083534483350}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &9153271286424822414
+--- !u!114 &6259854083534483355
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9153271286424822403}
+  m_GameObject: {fileID: 6259854083534483350}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2039e234fb665145aa2bc5a46aff818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 9153271286424822413}
+  anim: {fileID: 6259854083534483352}
   IsOnce: 0
   Pressed: 0
-  timer: 0
-  asource: {fileID: 5325334790573723471}
+  timer: 3
+  asource: {fileID: 6935235995291255386}
   pressedSound: {fileID: 8300000, guid: 6e9ef2efe3e8970469866c747378b0ec, type: 3}
   tickSound: {fileID: 8300000, guid: 19629505e24087842a0a5691c7b2df0a, type: 3}
   OnPressed:
@@ -185,14 +185,26 @@ MonoBehaviour:
         m_CallState: 2
   OnTimered:
     m_PersistentCalls:
-      m_Calls: []
---- !u!82 &5325334790573723471
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SlideDoor, Assembly-CSharp
+        m_MethodName: Close
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!82 &6935235995291255386
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9153271286424822403}
+  m_GameObject: {fileID: 6259854083534483350}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}

@@ -10,15 +10,18 @@ public class Lazer : MonoBehaviour
         if (!line) line = GetComponent<LineRenderer>();
         if (line)
         {
+            line.useWorldSpace = true;
+            
             line.positionCount++;
+            line.SetPosition(0, line.transform.position);
             RaycastHit hit;
             if (Physics.Raycast(line.transform.position, transform.right, out hit))
             {
-                line.SetPosition(1, transform.right * hit.distance);
+                line.SetPosition(1, line.transform.position + transform.right * hit.distance);
             }
             else
             {
-                line.SetPosition(1, transform.right * MaxLength);
+                line.SetPosition(1, line.transform.position + transform.right * MaxLength);
             }
             
         }
@@ -31,17 +34,19 @@ public class Lazer : MonoBehaviour
         {
             var poss = new Vector3[30];
             line.GetPositions(poss);
+            
             var prevpos = line.transform.position;
             var isfirst = true;
             foreach (var pos in poss)
             {
-                //Debug.Log(pos);
+                Debug.Log(pos);
                 if (isfirst)
                 {
                     isfirst = false;
                     prevpos = pos;
                     continue;
                 }
+                
                 Vector3 dir = (pos - prevpos).normalized;
                 //Debug.DrawRay(prevpos, dir, Color.blue);
                 RaycastHit[] hits = Physics.RaycastAll(line.transform.position + prevpos, dir, Vector3.Distance(pos, prevpos));

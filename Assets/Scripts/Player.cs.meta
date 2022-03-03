@@ -3,7 +3,13 @@ guid: b6e25e2c494f86147974f9f3002cd771
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - FPCam: {instanceID: 0}
+  - TDCam: {instanceID: 0}
+  - stepsound: {fileID: 8300000, guid: b9b6d5f5a70b62a459ab77de71617b95, type: 3}
+  - asource: {instanceID: 0}
+  - rig: {instanceID: 0}
+  - col: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

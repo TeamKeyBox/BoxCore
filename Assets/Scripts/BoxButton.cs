@@ -18,25 +18,63 @@ public class BoxButton : MonoBehaviour
         {
             if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Press") || anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
             {
-                Pressed = false;
+                if (timer <= 0) Pressed = false;
                 if (IsOnce)
                 {
                     Destroy(gameObject);
                 }
             }
         }
+        if (curtime > 0 && Pressed)
+        {
+            curtime -= Time.deltaTime;
+            if (prevint != curtime)
+            {
+                if (asource && tickSound)
+                {
+                    asource.clip = tickSound;
+                    asource.Play();
+                }
+            }
+            prevint = Mathf.FloorToInt(curtime);
+
+        }
+        else if (curtime <= 0 && Pressed && timer > 0)
+        {
+            if (OnTimered != null) OnTimered.Invoke();
+            Pressed = false;
+            anim.Play("Spawn");
+            if (IsOnce)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
+
+    private int prevint = 0;
 
     public void Press()
     {
         anim.Play("Press");
         Pressed = true;
-        OnPressed.Invoke();
+        if (OnPressed != null) OnPressed.Invoke();
+        curtime = timer;
+        if (asource && pressedSound)
+        {
+            asource.clip = pressedSound;
+            asource.Play();
+        }
     }
 
     public Animator anim;
     public bool IsOnce;
     public bool Pressed;
+    public float timer;
+    private float curtime;
+    public AudioSource asource;
+    public AudioClip pressedSound;
+    public AudioClip tickSound;
 
     public UnityEvent OnPressed;
+    public UnityEvent OnTimered;
 }
