@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,21 +53,24 @@
     <UnityVersion>2021.1.20f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\Hint.cs" />
     <Compile Include="Assets\Scripts\UISounds.cs" />
     <Compile Include="Assets\Scripts\GoalObj.cs" />
     <Compile Include="Assets\Scripts\BoxButton.cs" />
+    <Compile Include="Assets\Scripts\Caption.cs" />
     <Compile Include="Assets\Scripts\TTeleport.cs" />
     <Compile Include="Assets\Scripts\DelayAble.cs" />
     <Compile Include="Assets\Scripts\Lazer.cs" />
+    <Compile Include="Assets\Scripts\PrefOn.cs" />
     <Compile Include="Assets\Scripts\SlideDoor.cs" />
     <Compile Include="Assets\Scripts\SunLight.cs" />
     <Compile Include="Assets\Scripts\TDamage.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\TriggerObj.cs" />
     <Compile Include="Assets\Scripts\StaticObjs.cs" />
-    <Compile Include="Assets\Scripts\Caption.cs" />
-    <Compile Include="Assets\Scripts\PrefOn.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

@@ -74,11 +74,18 @@ public class StaticObjs : MonoBehaviour
                 GameJoltUI.Instance.ShowSignIn(
                     (bool signInSuccess) => {
                         Debug.Log(string.Format("Sign-in {0}", signInSuccess ? "successful" : "failed or user's dismissed the window"));
+			PlaySound(sound_ui_submit);
+                	if (isfirst) {
+                	    isfirstlogin = false;
+                	    LoadScene("Title");
+                	}
+                	else
+                	{
+                	    LoadScene("Settings");
+                	}
                     },
                     (bool userFetchedSuccess) => {
                         Debug.Log(string.Format("User details fetched {0}", userFetchedSuccess ? "successfully" : "failed"));
-                        PlaySound(sound_ui_submit);
-                        if (isfirst) LoadScene("Title"); else LoadScene("Settings");
                     }
                 );
             }
