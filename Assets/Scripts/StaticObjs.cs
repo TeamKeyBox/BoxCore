@@ -30,6 +30,13 @@ public class StaticObjs : MonoBehaviour
             }
         }
         first = false;
+        if (OnGameJolt != null && GameJoltAPI.Instance)
+        {
+            if (GameJoltAPI.Instance.HasSignedInUser)
+            {
+                OnGameJolt.Invoke(GameJoltAPI.Instance.CurrentUser.Name);
+            }
+        }
     }
 
     private static bool first = true;
@@ -205,6 +212,24 @@ public class StaticObjs : MonoBehaviour
         Application.Quit();
     }
 
+    public void SetPaused(bool paused)
+    {
+        if (currentPly)
+        {
+            currentPly.SetPause(paused);
+        }
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ResetTrophies()
+    {
+        Trophies.Remove(157702);
+    }
+
     public AudioSource uisound;
     public Text mestext;
     public Button yesbtn;
@@ -212,8 +237,10 @@ public class StaticObjs : MonoBehaviour
 
     public UnityEvent OnStarted;
     public UnityEvent OnFirst;
+    public UnityEvent<string> OnGameJolt;
     public static AudioClip sound_ui_submit;
     public static AudioClip sound_ui_cancel;
     public static AudioClip sound_ui_move;
 
+    public static Player currentPly;
 }

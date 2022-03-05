@@ -17,12 +17,12 @@ public class DelayAble : MonoBehaviour
     {
         if (anim)
         {
-            Debug.Log(anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
+            //Debug.Log(anim.GetCurrentAnimatorStateInfo(0).normalizedTime);
             if (stateninatta)
             {
                 if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= time)
                 {
-                    Debug.Log("Test");
+                    //Debug.Log("Test");
                     onDelayed.Invoke();
                     Destroy(this);
                 }
@@ -34,7 +34,7 @@ public class DelayAble : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Test2");
+                        //Debug.Log("Test2");
                         onDelayed.Invoke();
                         Destroy(this);
                     }

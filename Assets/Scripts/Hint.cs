@@ -45,5 +45,9 @@ public class Hint : MonoBehaviour
         }
     }
     public float viewDistance = 40;
-    public Player player;
+    public Player player {
+        get {
+            return StaticObjs.currentPly;
+        }
+    }
 }

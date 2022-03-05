@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
             pubOffset = offset;
         }
         this.Health = 100;
+        StaticObjs.currentPly = this;
     }
 
     public Vector3 pubOffset;
@@ -46,6 +47,16 @@ public class Player : MonoBehaviour
 
     private float damagetime;
 
+    public void SetPause(bool paused)
+    {
+        Controlable = paused;
+        Cursor.lockState = Controlable && IsFP ? CursorLockMode.Locked : CursorLockMode.None;
+        if (pauseScreen)
+        {
+            pauseScreen.SetActive(!Controlable);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -54,7 +65,11 @@ public class Player : MonoBehaviour
         {
             TDCam.transform.position = transform.position + new Vector3(pubOffset.x, pubOffset.y, -pubOffset.z);
         }
-        if (rig)
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SetPause(!Controlable);
+        }
+        if (rig && Controlable)
         {
             Debug.DrawRay(rig.position, rig.transform.forward, Color.red);
             Debug.DrawRay(rig.position, rig.transform.right, Color.blue);
@@ -251,6 +266,9 @@ public class Player : MonoBehaviour
     public float Health;
     public AudioClip stepsound;
     public AudioSource asource;
+    public bool Controlable { get; private set; } = true;
+
+    public GameObject pauseScreen;
 
     public Rigidbody rig;
     public Collider col;
