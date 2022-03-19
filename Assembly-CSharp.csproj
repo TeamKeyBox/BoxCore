@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Hint.cs" />
     <Compile Include="Assets\Scripts\UISounds.cs" />
+    <Compile Include="Assets\Scripts\Core\Green\Green_Grid.cs" />
     <Compile Include="Assets\Scripts\GoalObj.cs" />
     <Compile Include="Assets\Scripts\BoxButton.cs" />
     <Compile Include="Assets\Scripts\Caption.cs" />
@@ -69,8 +70,11 @@
     <Compile Include="Assets\Scripts\SunLight.cs" />
     <Compile Include="Assets\Scripts\TDamage.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\CoreObj.cs" />
     <Compile Include="Assets\Scripts\TriggerObj.cs" />
+    <Compile Include="Assets\Scripts\Core\Green\Green_Tile.cs" />
     <Compile Include="Assets\Scripts\StaticObjs.cs" />
+    <Compile Include="Assets\Scripts\MainCanvas.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -684,6 +688,9 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.State.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="VSSettingsProvider">
       <HintPath>Library\ScriptAssemblies\VSSettingsProvider.dll</HintPath>

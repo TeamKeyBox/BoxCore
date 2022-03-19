@@ -423,6 +423,7 @@ MonoBehaviour:
   Health: 0
   stepsound: {fileID: 8300000, guid: b9b6d5f5a70b62a459ab77de71617b95, type: 3}
   asource: {fileID: -2443302242827507054}
+  canvas: {fileID: 0}
   rig: {fileID: 2793304758710707114}
   col: {fileID: 2793304758710707119}
 --- !u!82 &-2443302242827507054

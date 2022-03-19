@@ -618,6 +618,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2793304758710707115, guid: e5483f9dcb3b9194bbc07523b1828e11, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 2472812403382699403}
+    - target: {fileID: 2793304758710707115, guid: e5483f9dcb3b9194bbc07523b1828e11, type: 3}
       propertyPath: pauseScreen
       value: 
       objectReference: {fileID: 2472812403382699402}
@@ -1362,6 +1366,10 @@ PrefabInstance:
       propertyPath: fade
       value: 
       objectReference: {fileID: 2472812403382699398}
+    - target: {fileID: 5804803955066903098, guid: 1ddd6d1716f64234b9c12c375a4f63fc, type: 3}
+      propertyPath: sceneTo
+      value: lv1_3
+      objectReference: {fileID: 0}
     - target: {fileID: 5804803955066903100, guid: 1ddd6d1716f64234b9c12c375a4f63fc, type: 3}
       propertyPath: m_RootOrder
       value: 29
@@ -3496,6 +3504,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 9214592130257459652, guid: 13d75a2435645e4448c9b0db4c240047, type: 3}
   m_PrefabInstance: {fileID: 2472812403382699397}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2472812403382699403 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5206819988061797991, guid: 13d75a2435645e4448c9b0db4c240047, type: 3}
+  m_PrefabInstance: {fileID: 2472812403382699397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2472812403382699399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c49455359e11a34e8eb558c10b3aeef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3015594955435553246
 PrefabInstance:
   m_ObjectHideFlags: 0

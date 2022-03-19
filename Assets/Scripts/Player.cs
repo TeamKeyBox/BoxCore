@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using GameJolt.API;
 using GameJolt.API.Objects;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -23,7 +24,52 @@ public class Player : MonoBehaviour
         }
         this.Health = 100;
         StaticObjs.currentPly = this;
+
+        if (coreTypes.Count <= 0)
+        {
+            coreTypes.Add(1, new CoreMode("Speed", 1, Color.blue,() => { this.Speed = 2; },() => { this.Speed = 1; }));
+            coreTypes.Add(2, new CoreMode("Place", 2, Color.green, () => { CoreValue1 = 1; }, () => {}));
+        }
     }
+
+    public void SetCore(int id)
+    {
+        CoreMode core = null;
+        bool suc = coreTypes.TryGetValue(this.CurrentCore, out core);
+        //Debug.Log("a" + suc);
+        if (suc)
+        {
+            if (core.OnDisabled != null) core.OnDisabled.Invoke();
+        }
+        this.CurrentCore = id;
+        suc = coreTypes.TryGetValue(id, out core);
+        //Debug.Log("b" + suc);
+        if (suc)
+        {
+            if (core.OnCaught != null) core.OnCaught.Invoke();
+            if (canvas.coreEffect)
+            {
+                canvas.coreEffect.gameObject.SetActive(true);
+                canvas.coreEffect.color = core.color;
+            }
+        }
+        else
+        {
+            if (canvas.coreEffect)
+            {
+                canvas.coreEffect.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void DisableCore()
+    {
+        SetCore(0);
+    }
+
+    public int CurrentCore { get; private set; }
+
+    public int CoreValue1 { get; private set; }
 
     public Vector3 pubOffset;
     private Vector3 offset;
@@ -51,9 +97,9 @@ public class Player : MonoBehaviour
     {
         Controlable = paused;
         Cursor.lockState = Controlable && IsFP ? CursorLockMode.Locked : CursorLockMode.None;
-        if (pauseScreen)
+        if (canvas.pauseScreen)
         {
-            pauseScreen.SetActive(!Controlable);
+            canvas.pauseScreen.SetActive(!Controlable);
         }
     }
 
@@ -268,7 +314,8 @@ public class Player : MonoBehaviour
     public AudioSource asource;
     public bool Controlable { get; private set; } = true;
 
-    public GameObject pauseScreen;
+    public MainCanvas canvas;
+    private static Dictionary<int, CoreMode> coreTypes = new Dictionary<int, CoreMode>();
 
     public Rigidbody rig;
     public Collider col;

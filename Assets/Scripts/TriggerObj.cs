@@ -35,6 +35,6 @@ public class TriggerObj : MonoBehaviour
         }
     }
 
-    public UnityEvent OnTrigger;
+    public UnityEvent OnTrigger = new UnityEvent();
     public UnityEvent OnExit;
 }
