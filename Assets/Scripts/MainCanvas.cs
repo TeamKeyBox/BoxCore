@@ -11,4 +11,5 @@ public class MainCanvas : MonoBehaviour
     }
     public GameObject pauseScreen;
     public Image coreEffect;
+    public Fade fade;
 }

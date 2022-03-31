@@ -14,6 +14,7 @@ public class CoreObj : MonoBehaviour
             col.isTrigger = true;
             var trigger = col.gameObject.AddComponent<TriggerObj>();
             trigger.OnTrigger.AddListener(() => {
+                StaticObjs.currentPly.canvas.fade.FadeShort(Color.white);
                 StaticObjs.currentPly.SetCore(this.CoreID);
             });
         }

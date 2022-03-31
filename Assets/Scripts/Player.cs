@@ -30,6 +30,20 @@ public class Player : MonoBehaviour
             coreTypes.Add(1, new CoreMode("Speed", 1, Color.blue,() => { this.Speed = 2; },() => { this.Speed = 1; }));
             coreTypes.Add(2, new CoreMode("Place", 2, Color.green, () => { CoreValue1 = 1; }, () => {}));
         }
+
+        if (StaticObjs.default_fp)
+        {
+            SwitchCam(StaticObjs.default_fp);
+        }
+    }
+
+    private void Awake()
+    {
+        if (postProcessssss)
+        {
+            postProcessssss.transform.SetParent(null);
+            postProcessssss = null;
+        }
     }
 
     public void SetCore(int id)
@@ -50,7 +64,7 @@ public class Player : MonoBehaviour
             if (canvas.coreEffect)
             {
                 canvas.coreEffect.gameObject.SetActive(true);
-                canvas.coreEffect.color = core.color;
+                canvas.coreEffect.color = new Color(core.color.r, core.color.g, core.color.b, 0.2f);
             }
         }
         else
@@ -312,6 +326,8 @@ public class Player : MonoBehaviour
     public float Health;
     public AudioClip stepsound;
     public AudioSource asource;
+    public GameObject postProcessssss;
+
     public bool Controlable { get; private set; } = true;
 
     public MainCanvas canvas;

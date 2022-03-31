@@ -28,6 +28,10 @@ public class StaticObjs : MonoBehaviour
             {
                 SetResolution(PlayerPrefs.GetInt("screen_resolution", 0));
             }
+            if (PlayerPrefs.HasKey("cam_fp"))
+            {
+                SetDefaultCam(PlayerPrefs.GetInt("cam_fp", 0));
+            }
         }
         first = false;
         if (OnGameJolt != null && GameJoltAPI.Instance)
@@ -201,6 +205,14 @@ public class StaticObjs : MonoBehaviour
         }
         PlayerPrefs.SetInt("screen_resolution", choose);
     }
+
+    public void SetDefaultCam(int fp)
+    {
+        default_fp = fp == 1;
+        PlayerPrefs.SetInt("cam_fp", default_fp ? 1 : 0);
+    }
+
+    public static bool default_fp { private set; get; }
 
     public void LoadScene(string scene)
     {
