@@ -16,11 +16,11 @@ public class TDamage : TriggerObj
         
     }
 
-    public new void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
         if (other.tag == "Player")
         {
-            var ply = other.GetComponent<Player>();
+            var ply = other.GetComponentInParent<Player>();
             ply.Damage(amount);
 
             //if (OnTrigger != null) OnTrigger.Invoke();

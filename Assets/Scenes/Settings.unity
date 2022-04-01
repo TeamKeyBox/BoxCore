@@ -2475,7 +2475,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Reset all torophies
+  m_Text: Reset all trophies
 --- !u!222 &1476985886
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2738,7 +2738,7 @@ GameObject:
   - component: {fileID: 1551025779}
   - component: {fileID: 1551025778}
   m_Layer: 5
-  m_Name: ResetTorophies
+  m_Name: ResetTrophies
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

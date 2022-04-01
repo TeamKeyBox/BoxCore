@@ -7,7 +7,7 @@ public class Green_Grid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!ghostTile)
+        if (!ghostTile || !ghostTile.isActiveAndEnabled)
         {
             ghostTile = Instantiate(tile.gameObject).GetComponent<Green_Tile>();
             if (ghostTile)
@@ -40,8 +40,9 @@ public class Green_Grid : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && CanBePlaced())
             {
                 RaycastHit2D hit;
-                hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), this.transform.forward, 0.001f);
-                if (hit.collider == base.GetComponent<Collider2D>())
+                LayerMask mask = LayerMask.GetMask("TDCamOnly");
+                hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), this.transform.forward, 0.001f, mask);
+                if (hit && hit.collider == base.GetComponent<Collider2D>())
                 {
                     var til = Instantiate(ghostTile.gameObject).GetComponent<Green_Tile>();
                     til.transform.SetParent(this.transform);
@@ -55,6 +56,7 @@ public class Green_Grid : MonoBehaviour
         {
             if (ghostTile) ghostTile.gameObject.SetActive(false);
         }
+        debug = IsEnabled() + "," + CanBePlaced();
     }
 
     private bool IsEnabled()
@@ -64,12 +66,12 @@ public class Green_Grid : MonoBehaviour
 
     private bool CanBePlaced()
     {
-        return IsEnabled() && StaticObjs.currentPly.CoreValue1 > 0;
+        return IsEnabled();
     }
 
     public Vector2 size;
     public BoxCollider2D raycol;
     public Green_Tile tile;
     private static Green_Tile ghostTile;
-
+    public string debug { get; private set; }
 }

@@ -100,9 +100,13 @@ public class Player : MonoBehaviour
 
     public void Damage(float amount)
     {
-        if (damagetime > 0) return;
+        if (damagetime > 0 || Controlable) return;
         this.Health -= amount;
         damagetime = 0.2f;
+        if (this.canvas.fade)
+        {
+            this.canvas.fade.FadeSafely(Color.red, 2f, 0.5f);
+        }
     }
 
     private float damagetime;

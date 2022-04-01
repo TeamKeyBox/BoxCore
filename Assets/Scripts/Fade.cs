@@ -15,11 +15,13 @@ public class Fade : MonoBehaviour
                 img.color = new Color(img.color.r, img.color.g, img.color.b, time / maxtime);
                 time -= Time.deltaTime;
             }
-            if (time <= 0f)
+            if (time < 0f)
             {
                 time = 0;
+                img.color = new Color(img.color.r, img.color.g, img.color.b, 0f);
                 this.gameObject.SetActive(false);
             }
+            
         }
 
     }
@@ -41,6 +43,12 @@ public class Fade : MonoBehaviour
 
     public void FadeShort(Color col)
     {
-        FadeCustom(col, 0.8f);
+        FadeCustom(col, 1f);
+    }
+
+    public void FadeSafely(Color col, float time, float startTime)
+    {
+        FadeCustom(col, time);
+        this.time = startTime;
     }
 }
