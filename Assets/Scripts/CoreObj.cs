@@ -16,6 +16,10 @@ public class CoreObj : MonoBehaviour
             trigger.OnTrigger.AddListener(() => {
                 StaticObjs.currentPly.canvas.fade.FadeShort(Color.white);
                 StaticObjs.currentPly.SetCore(this.CoreID);
+                if (OnCore != null)
+                {
+                    OnCore.Invoke();
+                }
             });
         }
     }
@@ -26,6 +30,7 @@ public class CoreObj : MonoBehaviour
         
     }
 
+    public UnityEvent OnCore;
     public Collider col;
     public int CoreID;
     //public CoreMode Mode;
