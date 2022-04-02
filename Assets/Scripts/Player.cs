@@ -31,6 +31,13 @@ public class Player : MonoBehaviour
             coreTypes.Add(2, new CoreMode("Place", 2, Color.green, () => { CoreValue1 = 1; }, () => {}));
         }
 
+        if (FPCam)
+        {
+            FPCam.fieldOfView = StaticObjs.camera_fov;
+        }
+
+        this.MouseKando = StaticObjs.input_mousesens;
+
         if (StaticObjs.default_fp)
         {
             SwitchCam(StaticObjs.default_fp);
@@ -115,6 +122,7 @@ public class Player : MonoBehaviour
     {
         Controlable = paused;
         Cursor.lockState = Controlable && IsFP ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !Controlable || !IsFP;
         if (canvas.pauseScreen)
         {
             canvas.pauseScreen.SetActive(!Controlable);
@@ -150,7 +158,7 @@ public class Player : MonoBehaviour
                     rig.transform.eulerAngles = new Vector3(0, 0, 0);
                     MoveTo(-rig.transform.right);
                 }
-                if (Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
                 {
                     if (OnGround())
                     {
@@ -203,8 +211,8 @@ public class Player : MonoBehaviour
                 {
                     var syuusei = 0f;
                     var syuusei2 = 0f;
-                    var tate = Input.GetAxis("Mouse Y") * -10f;
-                    var yoko = Input.GetAxis("Mouse X") * this.MouseKando;
+                    var tate = Input.GetAxis("Mouse Y") * -10f * this.MouseKando;
+                    var yoko = Input.GetAxis("Mouse X") * 10f * this.MouseKando;
                     var eulang = this.FPCam.transform.eulerAngles;
                     if (eulang.x < 280f & eulang.x > 270f & tate < 0f)
                     {

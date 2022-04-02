@@ -32,6 +32,14 @@ public class StaticObjs : MonoBehaviour
             {
                 SetDefaultCam(PlayerPrefs.GetInt("cam_fp", 0));
             }
+            if (PlayerPrefs.HasKey("cam_fov"))
+            {
+                SetFov(PlayerPrefs.GetFloat("cam_fov", 60));
+            }
+            if (PlayerPrefs.HasKey("input_mouse_sens"))
+            {
+                SetMouseSens(PlayerPrefs.GetFloat("input_mouse_sens", 1));
+            }
         }
         first = false;
         if (OnGameJolt != null && GameJoltAPI.Instance)
@@ -212,6 +220,21 @@ public class StaticObjs : MonoBehaviour
         PlayerPrefs.SetInt("cam_fp", default_fp ? 1 : 0);
     }
 
+    public void SetFov(float fov)
+    {
+        camera_fov = fov;
+        PlayerPrefs.SetFloat("cam_fov", fov);
+    }
+
+    public void SetMouseSens(float amount)
+    {
+        input_mousesens = amount;
+        PlayerPrefs.SetFloat("input_mouse_sens", amount);
+    }
+
+    public static float input_mousesens { private set; get; } = 1;
+
+    public static float camera_fov { private set; get; } = 60;
     public static bool default_fp { private set; get; }
 
     public void LoadScene(string scene)
