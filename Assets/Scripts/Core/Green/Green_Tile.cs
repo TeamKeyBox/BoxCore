@@ -7,7 +7,31 @@ public class Green_Tile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("Break", 5f);
+        var col = this.GetComponent<Collider>();
+        Collider[] cols = Physics.OverlapBox(this.transform.position, col.bounds.extents, this.transform.rotation);
+        var ok = false;
+        foreach (var i in cols)
+        {
+            if (i.transform.tag == "Player")
+            {
+                ok = true;
+                break;
+            }
+        }
+        if (!ok)
+        {
+            col.enabled = true;
+            Invoke("Break", 5f);
+        }
+        else
+        {
+            if (OnTileBroken != null)
+            {
+                OnTileBroken.Invoke();
+            }
+            Destroy(this.gameObject);
+        }
+        
     }
 
     private void OnEnable()
@@ -42,6 +66,11 @@ public class Green_Tile : MonoBehaviour
 
     public void Break()
     {
+        Break(false);
+    }
+
+    public void Break(bool silently)
+    {
         if (gibs)
         {
             for (var i = 0;i < 10;i++)
@@ -61,9 +90,15 @@ public class Green_Tile : MonoBehaviour
                 }
             }
         }
+        if (!silently && OnTileBroken != null)
+        {
+            OnTileBroken.Invoke();
+        }
         Destroy(this.gameObject);
     }
 
+    public delegate void TileBreakEvent();
+    public event TileBreakEvent OnTileBroken;
     public SpriteRenderer render;
     public GameObject gibs;
 }

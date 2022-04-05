@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 9153271286424822413}
-  IsOnce: 0
+  IsOnce: 1
   Pressed: 0
   timer: 0
   asource: {fileID: 5325334790573723471}

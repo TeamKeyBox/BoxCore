@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\BoxButton.cs" />
     <Compile Include="Assets\Scripts\Caption.cs" />
     <Compile Include="Assets\Scripts\HintPanel.cs" />
+    <Compile Include="Assets\Scripts\CoreCleaner.cs" />
     <Compile Include="Assets\Scripts\TTeleport.cs" />
     <Compile Include="Assets\Scripts\DelayAble.cs" />
     <Compile Include="Assets\Scripts\Lazer.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Scripts\CoreObj.cs" />
     <Compile Include="Assets\Scripts\TriggerObj.cs" />
     <Compile Include="Assets\Scripts\Core\Green\Green_Tile.cs" />
+    <Compile Include="Assets\Scripts\CoreWall.cs" />
     <Compile Include="Assets\Scripts\StaticObjs.cs" />
   </ItemGroup>
   <ItemGroup>

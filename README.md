@@ -1,4 +1,4 @@
 # BoxCore
 An action puzzle game
-Please download here https://github.com/TeamKeyBox/BoxCore/releases
+Please download here https://gamejolt.com/games/keybox_boxcore/693832
 (ここでダウンロードしてください。)

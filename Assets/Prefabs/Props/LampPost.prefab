@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 1593113245126869867}
   - component: {fileID: 1593113245130228493}
   - component: {fileID: 1593113245129025871}
+  - component: {fileID: -356681273613321232}
   m_Layer: 0
   m_Name: LampPost
   m_TagString: Untagged
@@ -176,3 +177,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &-356681273613321232
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593113245127223215}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300328, guid: fde463d1640be964dad05cce1c744989, type: 3}

@@ -28,7 +28,15 @@ public class Player : MonoBehaviour
         if (coreTypes.Count <= 0)
         {
             coreTypes.Add(1, new CoreMode("Speed", 1, Color.blue,() => { this.Speed = 2; },() => { this.Speed = 1; }));
-            coreTypes.Add(2, new CoreMode("Place", 2, Color.green, () => { CoreValue1 = 1; }, () => {}));
+            coreTypes.Add(2, new CoreMode("Place", 2, Color.green, () => {
+                CoreValue1 = 1;
+                if (GameJoltAPI.Instance && GameJoltAPI.Instance.HasSignedInUser)
+                {
+                    Trophies.TryUnlock(160333);
+                }
+            }, () => {
+
+            }));
         }
 
         if (FPCam)
@@ -62,6 +70,7 @@ public class Player : MonoBehaviour
         {
             if (core.OnDisabled != null) core.OnDisabled.Invoke();
         }
+        var bc = this.CurrentCore;
         this.CurrentCore = id;
         suc = coreTypes.TryGetValue(id, out core);
         //Debug.Log("b" + suc);
@@ -71,7 +80,7 @@ public class Player : MonoBehaviour
             if (canvas.coreEffect)
             {
                 canvas.coreEffect.gameObject.SetActive(true);
-                canvas.coreEffect.color = new Color(core.color.r, core.color.g, core.color.b, 0.2f);
+                canvas.coreEffect.color = new Color(core.color.r, core.color.g, core.color.b, 0.12f);
             }
         }
         else
@@ -81,12 +90,20 @@ public class Player : MonoBehaviour
                 canvas.coreEffect.gameObject.SetActive(false);
             }
         }
+
+        if (OnCoreUpdate != null)
+        {
+            OnCoreUpdate.Invoke(bc, this.CurrentCore);
+        }
     }
 
     public void DisableCore()
     {
         SetCore(0);
     }
+
+    public delegate void CoreDisableEvent(int bc, int ac);
+    public event CoreDisableEvent OnCoreUpdate;
 
     public int CurrentCore { get; private set; }
 
@@ -107,7 +124,7 @@ public class Player : MonoBehaviour
 
     public void Damage(float amount)
     {
-        if (damagetime > 0 || Controlable) return;
+        if (damagetime > 0 || !Controlable) return;
         this.Health -= amount;
         damagetime = 0.2f;
         if (this.canvas.fade)
@@ -343,7 +360,7 @@ public class Player : MonoBehaviour
     public bool Controlable { get; private set; } = true;
 
     public MainCanvas canvas;
-    private static Dictionary<int, CoreMode> coreTypes = new Dictionary<int, CoreMode>();
+    public static Dictionary<int, CoreMode> coreTypes = new Dictionary<int, CoreMode>();
 
     public Rigidbody rig;
     public Collider col;

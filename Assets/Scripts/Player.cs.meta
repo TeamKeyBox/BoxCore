@@ -10,7 +10,7 @@ MonoImporter:
   - asource: {instanceID: 0}
   - rig: {instanceID: 0}
   - col: {instanceID: 0}
-  executionOrder: 0
+  executionOrder: -50
   icon: {instanceID: 0}
   userData: 
   assetBundleName: 

@@ -18,6 +18,19 @@ public class Green_Grid : MonoBehaviour
             }
         }
 
+        StaticObjs.currentPly.OnCoreUpdate += CurrentPly_OnCoreUpdate;
+    }
+
+    private void CurrentPly_OnCoreUpdate(int bc, int ac)
+    {
+        if (bc == 2)
+        {
+            foreach (var i in tiles)
+            {
+                i.Break(true);
+            }
+            tiles.Clear();
+        }
     }
 
     // Update is called once per frame
@@ -48,6 +61,12 @@ public class Green_Grid : MonoBehaviour
                     til.transform.SetParent(this.transform);
                     til.transform.position = ghostTile.transform.position;
                     til.enabled = true;
+                    til.OnTileBroken += () =>
+                    {
+                        tiles.Remove(til);
+                    };
+                    tiles.Add(til);
+                    
                 }
             }
 
@@ -69,6 +88,7 @@ public class Green_Grid : MonoBehaviour
         return IsEnabled();
     }
 
+    private List<Green_Tile> tiles = new List<Green_Tile>();
     public Vector2 size;
     public BoxCollider2D raycol;
     public Green_Tile tile;

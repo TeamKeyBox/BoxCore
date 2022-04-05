@@ -16,7 +16,7 @@ public class BoxButton : MonoBehaviour
     {
         if (Pressed)
         {
-            if (!anim.GetCurrentAnimatorStateInfo(0).IsName("Press") || anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1)
+            if ((!IsOnce && !anim.GetCurrentAnimatorStateInfo(0).IsName("Press")) || (anim.GetCurrentAnimatorStateInfo(0).IsName("Press") && anim.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1))
             {
                 if (timer <= 0) Pressed = false;
                 if (IsOnce)
@@ -28,7 +28,7 @@ public class BoxButton : MonoBehaviour
         if (curtime > 0 && Pressed)
         {
             curtime -= Time.deltaTime;
-            if (prevint != curtime)
+            if (prevint != Mathf.FloorToInt(curtime))
             {
                 if (asource && tickSound)
                 {
