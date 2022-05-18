@@ -311,7 +311,7 @@ public class Player : MonoBehaviour
         var nomt = to;
         var maxx = MaxSpeed * Math.Abs(nomt.x);
         var maxz = MaxSpeed * Math.Abs(nomt.z);
-        to = rig.velocity + (to * 3f);
+        to = rig.velocity + (to * 10f);
         /*if (Mathf.Abs(to.x) > maxx && Math.Abs(nomt.x) > 0)
         {
             to.x = to.x > 0 ? maxx : -maxx;
